@@ -1,5 +1,6 @@
 package hibernate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,6 +18,7 @@ public class ClientsDetails {
         this.id = id;
     }
 
+    @Column
     private String name;
 
     public String getName() {
@@ -27,6 +29,7 @@ public class ClientsDetails {
         this.name = name;
     }
 
+    @Column
     private int age;
 
     public int getAge() {
@@ -35,5 +38,16 @@ public class ClientsDetails {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Column
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
