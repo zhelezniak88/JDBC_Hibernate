@@ -1,10 +1,13 @@
 package hibernate2;
 
 import hibernate2.entity.Author;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AuthorHelper {
@@ -17,9 +20,14 @@ public class AuthorHelper {
     public List<Author> getAuthorList () {
         Session session = sessionFactory.openSession();
 
-        Criteria criteria = session.createCriteria(Author.class);
+        CriteriaBuilder criteria = session.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = criteria.createQuery();
+        Root<Author> root = criteriaQuery.from(Author.class);
+        criteriaQuery.select(root);
 
-        List<Author> authorList = criteria.list();
+        Query query = session.createQuery(criteriaQuery);
+
+        List<Author> authorList = query.getResultList();
 
         session.close();
         return authorList;

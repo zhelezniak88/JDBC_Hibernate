@@ -1,11 +1,11 @@
 package hibernate2.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
 
 @Entity
+@DynamicUpdate
 public class Author {
 
     @Id
@@ -13,6 +13,9 @@ public class Author {
     private long id;
 
     private String name;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     public long getId() {
         return id;
@@ -28,5 +31,13 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
